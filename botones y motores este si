@@ -1,0 +1,54 @@
+const int IN1 = 8;
+const int IN2 = 7;
+const int IN3 = 6;
+const int IN4 = 9;
+const int verde = 2;
+const int rojo = 5;
+const int ledazul = 3;
+
+bool estadomotor = false;
+
+void setup() {
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(ledazul, OUTPUT);
+  
+  // Modo normal con resistencias físicas externas conectadas a GND
+  pinMode(verde, INPUT);
+  pinMode(rojo, INPUT);
+  
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+  digitalWrite(ledazul, LOW);
+}
+
+void loop() {
+  // Al presionar llega 5V (HIGH)
+  if (digitalRead(verde) == HIGH) {
+    estadomotor = true;
+  }
+
+  // Al presionar llega 5V (HIGH)
+  if (digitalRead(rojo) == HIGH) {
+    estadomotor = false;
+  }
+
+  if (estadomotor == true) {
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
+    digitalWrite(ledazul, HIGH);
+  } 
+  else {
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, LOW);
+    digitalWrite(ledazul, LOW);
+  }
+}
